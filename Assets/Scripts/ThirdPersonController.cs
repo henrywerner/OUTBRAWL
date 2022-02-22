@@ -81,6 +81,8 @@ namespace StarterAssets
 		private int _animIDJump;
 		private int _animIDFreeFall;
 		private int _animIDMotionSpeed;
+		private int _animIDPunch;
+		private int _animIDKick;
 
 		private PlayerInput _playerInput;
 		private Animator _animator;
@@ -123,6 +125,8 @@ namespace StarterAssets
 			
 			JumpAndGravity();
 			GroundedCheck();
+			Punch();
+			Kick();
 			Move();
 		}
 
@@ -138,6 +142,8 @@ namespace StarterAssets
 			_animIDJump = Animator.StringToHash("Jump");
 			_animIDFreeFall = Animator.StringToHash("FreeFall");
 			_animIDMotionSpeed = Animator.StringToHash("MotionSpeed");
+			_animIDPunch = Animator.StringToHash("Punch");
+			_animIDKick = Animator.StringToHash("Kick");
 		}
 
         private void GroundedCheck()
@@ -150,6 +156,40 @@ namespace StarterAssets
 			if (_hasAnimator)
 			{
 				_animator.SetBool(_animIDGrounded, Grounded);
+			}
+		}
+
+		private void Punch()
+        {
+			// update animator if using character
+			if (_hasAnimator)
+			{
+				if (_input.punch)
+				{
+					_animator.SetBool(_animIDPunch, true);
+					_input.punch = false;
+				}
+				else
+				{
+					_animator.SetBool(_animIDPunch, false);
+				}
+			}
+		}
+
+		private void Kick()
+        {
+			// update animator if using character
+			if (_hasAnimator)
+			{
+				if (_input.kick)
+				{
+					_animator.SetBool(_animIDKick, true);
+					_input.kick = false;
+				}
+				else
+                {
+					_animator.SetBool(_animIDKick, false);
+				}
 			}
 		}
 
