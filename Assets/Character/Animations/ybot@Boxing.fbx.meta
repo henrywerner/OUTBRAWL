@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-guid: 20ffca6300edfb44e862c52bca521429
+guid: 1109027bbc3541041887d5a957a740b3
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable:
   - first:
       74: -203655887218126122
-    second: Strike Foward Jog
+    second: Boxing
   externalObjects: {}
   materials:
     materialImportMode: 2
@@ -35,11 +35,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Strike Foward Jog
+      name: Boxing
       takeName: mixamo.com
       internalID: 0
-      firstFrame: 0
-      lastFrame: 39
+      firstFrame: 8
+      lastFrame: 40
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -50,7 +50,7 @@ ModelImporter:
       loopBlend: 0
       loopBlendOrientation: 1
       loopBlendPositionY: 1
-      loopBlendPositionXZ: 0
+      loopBlendPositionXZ: 1
       keepOriginalOrientation: 0
       keepOriginalPositionY: 1
       keepOriginalPositionXZ: 0
