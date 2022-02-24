@@ -22,7 +22,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -203655887218126122, guid: 7c7b07cfaca109342bae84c7a93f1319, type: 3}
+  m_Motion: {fileID: 7400000, guid: 041a08f2cfccec04fa92b346ba8385a0, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -75,7 +75,7 @@ AnimatorStateTransition:
   m_ExitTime: 0.90625
   m_HasExitTime: 0
   m_HasFixedDuration: 1
-  m_InterruptionSource: 0
+  m_InterruptionSource: 3
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
 --- !u!1101 &-7633014308915920721
@@ -283,11 +283,11 @@ AnimatorStateTransition:
   m_IsExit: 0
   serializedVersion: 3
   m_TransitionDuration: 0.037536144
-  m_TransitionOffset: 0.23041831
-  m_ExitTime: 0.9466194
+  m_TransitionOffset: 0.001653673
+  m_ExitTime: 0.77064687
   m_HasExitTime: 0
   m_HasFixedDuration: 1
-  m_InterruptionSource: 0
+  m_InterruptionSource: 4
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
 --- !u!1101 &-3943826829571047522
@@ -400,7 +400,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: JumpLand
+  m_Name: JumpLand Blend
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -437,12 +437,12 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.053310987
-  m_TransitionOffset: 0
-  m_ExitTime: 0.0011150537
+  m_TransitionDuration: 0.05331096
+  m_TransitionOffset: 0.380401
+  m_ExitTime: 0.09146032
   m_HasExitTime: 0
   m_HasFixedDuration: 1
-  m_InterruptionSource: 4
+  m_InterruptionSource: 0
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
 --- !u!1102 &-782947030897635598
@@ -622,12 +622,12 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.6432216
-  m_TransitionOffset: 0
-  m_ExitTime: 0
+  m_TransitionDuration: 0.5399955
+  m_TransitionOffset: 0.048343066
+  m_ExitTime: 0.9668602
   m_HasExitTime: 1
   m_HasFixedDuration: 1
-  m_InterruptionSource: 4
+  m_InterruptionSource: 2
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
 --- !u!1102 &1725567275296691115
@@ -671,11 +671,11 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.1305947
-  m_TransitionOffset: 0.3629093
-  m_ExitTime: 0.39948252
+  m_TransitionDuration: 0.16824193
+  m_TransitionOffset: 0.36016813
+  m_ExitTime: 0.8274093
   m_HasExitTime: 1
-  m_HasFixedDuration: 1
+  m_HasFixedDuration: 0
   m_InterruptionSource: 2
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
@@ -748,7 +748,7 @@ AnimatorStateTransition:
   m_ExitTime: 0.87065625
   m_HasExitTime: 1
   m_HasFixedDuration: 1
-  m_InterruptionSource: 0
+  m_InterruptionSource: 2
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
 --- !u!1102 &4568384950741600909
@@ -758,7 +758,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Kick
+  m_Name: Grounded Kick Blend
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -939,9 +939,9 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.07026374
+  m_TransitionDuration: 0.12865607
   m_TransitionOffset: 0
-  m_ExitTime: 0.000114752715
+  m_ExitTime: 0.0005914611
   m_HasExitTime: 0
   m_HasFixedDuration: 1
   m_InterruptionSource: 2
