@@ -25,6 +25,10 @@ namespace StarterAssets
 		[Tooltip("Acceleration and deceleration")]
 		public float SpeedChangeRate = 10.0f;
 
+		[Space(10)] [Tooltip("Look Sensitivity")]
+		[Range(0.0f, 5.0f)]
+		public float LookSensitivity = 1;
+
 		[Space(10)]
 		[Tooltip("The height the player can jump")]
 		public float JumpHeight = 1.2f;
@@ -201,8 +205,8 @@ namespace StarterAssets
 				//Don't multiply mouse input by Time.deltaTime;
 				float deltaTimeMultiplier = IsCurrentDeviceMouse ? 1.0f : Time.deltaTime;
 				
-				_cinemachineTargetYaw += _input.look.x * deltaTimeMultiplier;
-				_cinemachineTargetPitch += _input.look.y * deltaTimeMultiplier;
+				_cinemachineTargetYaw += _input.look.x * deltaTimeMultiplier * LookSensitivity;
+				_cinemachineTargetPitch += _input.look.y * deltaTimeMultiplier * LookSensitivity;
 			}
 
 			// clamp our rotations so our values are limited 360 degrees
