@@ -14,6 +14,7 @@ namespace StarterAssets
 		public bool sprint;
 		public bool punch;
 		public bool kick;
+		public bool ragdoll;
 
 		[Header("Movement Settings")]
 		public bool analogMovement;
@@ -58,6 +59,11 @@ namespace StarterAssets
 			KickInput(value.isPressed);
         }
 
+		public void OnRagdoll(InputValue value)
+        {
+			RagdollInput(value.isPressed);
+        }
+
 #else
 	// old input sys if we do decide to have it (most likely wont)...
 #endif
@@ -91,6 +97,11 @@ namespace StarterAssets
 		public void KickInput(bool newKickState)
         {
 			kick = newKickState;
+        }
+
+		public void RagdollInput(bool newRagdollState)
+        {
+			ragdoll = newRagdollState;
         }
 
 #if !UNITY_IOS || !UNITY_ANDROID

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
 using UnityEngine.InputSystem;
@@ -93,6 +94,7 @@ namespace StarterAssets
 		private CharacterController _controller;
 		private StarterAssetsInputs _input;
 		private GameObject _mainCamera;
+		[SerializeField] List<Collider> RagdollParts = new List<Collider>();
 
 		private const float _threshold = 0.01f;
 
@@ -117,6 +119,7 @@ namespace StarterAssets
 			_playerInput = GetComponent<PlayerInput>();
 
 			AssignAnimationIDs();
+			SetRagdollParts();
 
 			// reset our timeouts on start
 			_jumpTimeoutDelta = JumpTimeout;
@@ -129,6 +132,7 @@ namespace StarterAssets
 			
 			JumpAndGravity();
 			GroundedCheck();
+			Ragdoll();
 			Punch();
 			Kick();
 			Move();
@@ -149,6 +153,49 @@ namespace StarterAssets
 			_animIDPunch = Animator.StringToHash("Punch");
 			_animIDKick = Animator.StringToHash("Kick");
 		}
+
+		private void SetRagdollParts()
+        {
+			Collider[] colliders = this.gameObject.GetComponentsInChildren<Collider>();
+
+			foreach (Collider c in colliders)
+			{
+				if (c.gameObject != this.gameObject)
+				{
+					c.isTrigger = true;
+					RagdollParts.Add(c);
+				}
+			}
+        }
+
+		public void ToggleRagdoll()
+        {
+			if(_animator.enabled)
+            {
+				// turn on ragdoll
+				_animator.enabled = false;
+				_speed = 0;
+				_rotationVelocity = 0;
+				_verticalVelocity = 0;
+
+				foreach (Collider c in RagdollParts)
+				{
+					c.isTrigger = false;
+					c.attachedRigidbody.velocity = Vector3.zero;
+				}
+			}
+			else
+            {
+				// turn off ragdoll
+				_animator.enabled = true;
+
+				foreach (Collider c in RagdollParts)
+				{
+					c.isTrigger = true;
+					c.attachedRigidbody.velocity = Vector3.zero;
+				}
+			}
+        }
 
         private void GroundedCheck()
 		{
@@ -196,6 +243,18 @@ namespace StarterAssets
 				}
 			}
 		}
+
+		private void Ragdoll()
+        {
+			if (_hasAnimator)
+            {
+				if (_input.ragdoll)
+                {
+					ToggleRagdoll();
+					_input.ragdoll = false;
+                }
+            }
+        }
 
 		private void CameraRotation()
 		{
