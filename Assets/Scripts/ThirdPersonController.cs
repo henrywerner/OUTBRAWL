@@ -163,6 +163,7 @@ namespace StarterAssets
 				if (c.gameObject != this.gameObject)
 				{
 					c.isTrigger = true;
+					c.attachedRigidbody.useGravity = false;
 					RagdollParts.Add(c);
 				}
 			}
@@ -181,6 +182,7 @@ namespace StarterAssets
 				foreach (Collider c in RagdollParts)
 				{
 					c.isTrigger = false;
+					c.attachedRigidbody.useGravity = true;
 					c.attachedRigidbody.velocity = Vector3.zero;
 				}
 			}
