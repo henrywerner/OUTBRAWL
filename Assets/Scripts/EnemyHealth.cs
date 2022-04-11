@@ -9,6 +9,7 @@ public class EnemyHealth : MonoBehaviour
     // make sure the the varibles entered for max health also match with the max value under PlayerHealthBar
     public float maxHealth;
     public static float currentHealth;
+    [SerializeField] GameObject enemyHealthBarUI;
 
     // Start is called before the first frame update
     void Start()
@@ -22,7 +23,7 @@ public class EnemyHealth : MonoBehaviour
         enemyHealthBar.value = currentHealth;
 
         // Ensures that the health bar is always facing the camera
-        transform.LookAt(Camera.main.transform);
+        enemyHealthBarUI.transform.LookAt(Camera.main.transform);
 
     }
 
@@ -36,7 +37,7 @@ public class EnemyHealth : MonoBehaviour
         }
     }
 
-    public void OnCollisionEnter(Collision other)
+    public void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Player")
         {
