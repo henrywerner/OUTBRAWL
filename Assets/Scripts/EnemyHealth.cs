@@ -39,7 +39,7 @@ public class EnemyHealth : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Player")
+        if (other.gameObject.tag == "PlayerAttack")
         {
             onDamage(5);
             Debug.Log("Enemy got BUMPED!");

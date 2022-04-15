@@ -1441,6 +1441,66 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!1 &1746324633
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1746324634}
+  - component: {fileID: 1746324635}
+  - component: {fileID: 1746324636}
+  m_Layer: 6
+  m_Name: RHand Hitbox
+  m_TagString: PlayerAttack
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1746324634
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1746324633}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 303121626702143595}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &1746324635
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1746324633}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.22
+  m_Height: 0.56
+  m_Direction: 0
+  m_Center: {x: 0.24, y: 0, z: 0}
+--- !u!114 &1746324636
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1746324633}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfb8134599f8c494dacecadba77938ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attack: {fileID: 1904893782}
+  hitbox: {fileID: 0}
 --- !u!1 &2108538569
 GameObject:
   m_ObjectHideFlags: 0
@@ -1967,6 +2027,7 @@ GameObject:
   - component: {fileID: 2126063277525460436}
   - component: {fileID: 1615987909}
   - component: {fileID: 1615987910}
+  - component: {fileID: 1904893782}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -2190,6 +2251,20 @@ CapsuleCollider:
   m_Height: 1.8
   m_Direction: 1
   m_Center: {x: 0, y: 0.9297695, z: 0}
+--- !u!114 &1904893782
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1243031537112785650}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fed80aea81a99bc498b970394bb6d0a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  powerMeter: {fileID: 5476174559548515501}
+  RHandHitbox: {fileID: 1746324636}
 --- !u!1 &1334274769995350441
 GameObject:
   m_ObjectHideFlags: 0
@@ -3591,6 +3666,7 @@ Transform:
   - {fileID: 937668259622197195}
   - {fileID: 7137429103225157807}
   - {fileID: 7546725093551115101}
+  - {fileID: 1746324634}
   m_Father: {fileID: 4472661158131296779}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
