@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class EnemyHealth : MonoBehaviour
@@ -10,14 +11,13 @@ public class EnemyHealth : MonoBehaviour
     public float maxHealth;
     public static float currentHealth;
     [SerializeField] GameObject enemyHealthBarUI;
+    [SerializeField] StarterAssets.ThirdPersonController enemyController;
 
-    // Start is called before the first frame update
     void Start()
     {
         currentHealth = maxHealth;
     }
 
-    // Update is called once per frame
     void Update()
     {
         enemyHealthBar.value = currentHealth;
@@ -27,29 +27,20 @@ public class EnemyHealth : MonoBehaviour
 
     }
 
-    public void onDamage(float damage)
+    public void OnDamage(float damage)
     {
         currentHealth -= damage;
         if (currentHealth <= 0)
         {
             currentHealth = 0;
-            onKilled();
+            StartCoroutine(OnKilled());
         }
     }
 
-    public void OnTriggerEnter(Collider other)
+    public IEnumerator OnKilled()
     {
-        if (other.gameObject.tag == "PlayerAttack")
-        {
-            onDamage(5);
-            Debug.Log("Enemy got BUMPED!");
-            Debug.Log("Enemy: " + currentHealth);
-        }
-    }
-
-
-    public void onKilled()
-    {
+        enemyController.ToggleRagdoll();
+        yield return new WaitForSeconds(4f);
         Destroy(gameObject);
     }
 }

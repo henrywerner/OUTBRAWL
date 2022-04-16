@@ -162,39 +162,47 @@ namespace StarterAssets
 			{
 				if (c.gameObject != this.gameObject)
 				{
-					c.isTrigger = true;
-					c.attachedRigidbody.useGravity = false;
-					RagdollParts.Add(c);
+					if (c.attachedRigidbody != null)
+					{
+						c.isTrigger = true;
+						c.attachedRigidbody.useGravity = false;
+						c.attachedRigidbody.isKinematic = false;
+						c.attachedRigidbody.collisionDetectionMode = CollisionDetectionMode.Discrete;
+						RagdollParts.Add(c);
+					}
 				}
 			}
         }
 
 		public void ToggleRagdoll()
         {
-			if(_animator.enabled)
-            {
-				// turn on ragdoll
-				_animator.enabled = false;
-				_speed = 0;
-				_rotationVelocity = 0;
-				_verticalVelocity = 0;
-
-				foreach (Collider c in RagdollParts)
+			if (_hasAnimator)
+			{
+				if (_animator.enabled)
 				{
-					c.isTrigger = false;
-					c.attachedRigidbody.useGravity = true;
-					c.attachedRigidbody.velocity = Vector3.zero;
+					// turn on ragdoll
+					_animator.enabled = false;
+					//_speed = 0;
+					//_rotationVelocity = 0;
+					//_verticalVelocity = 0;
+
+					foreach (Collider c in RagdollParts)
+					{
+						c.isTrigger = false;
+						c.attachedRigidbody.useGravity = true;
+						//c.attachedRigidbody.velocity = Vector3.zero;
+					}
 				}
-			}
-			else
-            {
-				// turn off ragdoll
-				_animator.enabled = true;
-
-				foreach (Collider c in RagdollParts)
+				else
 				{
-					c.isTrigger = true;
-					c.attachedRigidbody.velocity = Vector3.zero;
+					// turn off ragdoll
+					_animator.enabled = true;
+
+					foreach (Collider c in RagdollParts)
+					{
+						c.isTrigger = true;
+						c.attachedRigidbody.velocity = Vector3.zero;
+					}
 				}
 			}
         }
@@ -246,15 +254,12 @@ namespace StarterAssets
 			}
 		}
 
-		private void Ragdoll()
+		public void Ragdoll()
         {
-			if (_hasAnimator)
+			if (_input.ragdoll) // this line will only work for the player, not enemies!!!
             {
-				if (_input.ragdoll)
-                {
-					ToggleRagdoll();
-					_input.ragdoll = false;
-                }
+				ToggleRagdoll();
+				_input.ragdoll = false;
             }
         }
 

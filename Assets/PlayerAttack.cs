@@ -7,11 +7,6 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] PowerMeter powerMeter;
     [SerializeField] Hitbox RHandHitbox;
 
-    void Awake()
-    {
-        //RHandHboxCollider = RHandHitbox.GetComponent<Collider>();
-    }
-
     void Start()
     {
         RHandHitbox.enabled = false;
@@ -19,22 +14,23 @@ public class PlayerAttack : MonoBehaviour
         RHandHitbox.hitbox.isTrigger = true;
     }
 
-    void FixedUpdate()
-    {
-        // check RHand
-
-    }
-
     public void OnTriggerEnterExternal(Collider trigger, Collider other)
     {
-        // get EnemyHealth reference from other collider
-        // decrease enemy health based on power level and attack type (which trigger is attacking)
-            // call onDamage(float dmg)
+        GameObject obj = other.gameObject;
+
+        if (obj.tag == "Enemy" && obj.GetComponent<EnemyHealth>() != null)
+        {
+            obj.GetComponent<EnemyHealth>().OnDamage(30);
+            
+        }
+        else if (obj.layer == 7) // obj on ragdoll layer
+        {
+            obj.GetComponent<Rigidbody>().AddForce(trigger.transform.right * 20f, ForceMode.Impulse);
+        }
     }
 
     public void ToggleCrossPunch()
     {
-        Debug.Log("doing a cross punch now");
         RHandHitbox.enabled = !RHandHitbox.enabled;
         RHandHitbox.hitbox.enabled = !RHandHitbox.hitbox.enabled;
     }
