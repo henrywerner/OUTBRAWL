@@ -13,6 +13,8 @@ public class EnemyHealth : MonoBehaviour
     [SerializeField] GameObject enemyHealthBarUI;
     [SerializeField] StarterAssets.ThirdPersonController enemyController;
 
+    private bool isAlive = true;
+
     void Start()
     {
         currentHealth = maxHealth;
@@ -30,7 +32,7 @@ public class EnemyHealth : MonoBehaviour
     public void OnDamage(float damage)
     {
         currentHealth -= damage;
-        if (currentHealth <= 0)
+        if (currentHealth <= 0 && isAlive)
         {
             currentHealth = 0;
             StartCoroutine(OnKilled());
@@ -39,6 +41,10 @@ public class EnemyHealth : MonoBehaviour
 
     public IEnumerator OnKilled()
     {
+        isAlive = false;
+        Debug.Log("Enemy Killed: " + gameObject.name);
+        WaveLogic.Instance.RemoveAliveEnemy();
+        
         enemyController.ToggleRagdoll();
         yield return new WaitForSeconds(4f);
         Destroy(gameObject);
