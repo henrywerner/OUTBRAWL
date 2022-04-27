@@ -51,8 +51,8 @@ public class Spawner : MonoBehaviour
                 break;
         }
 
-        newEnemy = _tank;
-        info.SetName("tank");
+        // newEnemy = _tank;
+        // info.SetName("tank");
 
         while (Time.time <= spawnTime)
         {

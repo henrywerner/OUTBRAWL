@@ -1,15 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class EnemyHealth : MonoBehaviour
 {
-    public Slider enemyHealthBar;
+    [SerializeField] private Slider enemyHealthBar;
     // make sure the the varibles entered for max health also match with the max value under PlayerHealthBar
     public float maxHealth;
-    public static float currentHealth;
+    private float currentHealth;
     [SerializeField] GameObject enemyHealthBarUI;
     [SerializeField] StarterAssets.ThirdPersonController enemyController;
 
@@ -46,6 +47,11 @@ public class EnemyHealth : MonoBehaviour
         WaveLogic.Instance.RemoveAliveEnemy();
         
         enemyController.ToggleRagdoll();
+        
+        // yes, this is stupid
+        enemyController.gameObject.GetComponent<NavMeshAgent>().enabled = false;
+        enemyController.gameObject.GetComponent<EnemyNavMesh>().enabled = false;
+        
         yield return new WaitForSeconds(4f);
         Destroy(gameObject);
     }

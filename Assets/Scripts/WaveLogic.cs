@@ -84,25 +84,34 @@ public class WaveLogic : MonoBehaviour
         
         switch (wave)
         {
-            case 1:
+            case 1: // TODO: Figure out why wave one is skipped
                 // 4 brawlers
                 s1 = new int[] {1, 1};
                 s2 = s1;
-                break;
-            case 2:
-                // 6 brawlers
-                // S1: 2, S2: 2, S3: 1, S4: 1
-                s1 = new int[] {1, 1};
-                s2 = s1;
-                s3 = new int[] { 1 };
+                s3 = new int[] { }; // I have to set s3 as empty, otherwise it bugs out
                 s4 = s3;
                 break;
+            case 2:
+                // 4 brawlers, all separate spawners
+                s1 = new int[] {1};
+                s2 = s1;
+                s3 = s1;
+                s4 = s1;
+                break;
             case 3:
-                // 6 brawlers, 2 rangers
-                // S1: bb, S2: bb, S3: rb, S4: rb
+                // 5 brawlers, 1 tank
+                // S1: bb, S2: bb, S3: b, S4: tb
+                s1 = new int[] { 1, 1 };
+                s2 = s1;
+                s3 = new int[] { 1 };
+                s4 = new int[] { 3, 1 };
+                break;
+            case 4:
+                // 6 brawlers, 2 tanks
+                // S1: bb, S2: bb, S3: tb, S4: tb
                 s1 = new int[] {1, 1};
                 s2 = s1;
-                s3 = new int[] {2, 1};
+                s3 = new int[] {3, 1};
                 s4 = s3;
                 break;
             default:
