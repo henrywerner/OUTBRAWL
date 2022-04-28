@@ -4,11 +4,16 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
+    [SerializeField] int damage = 30;
     [SerializeField] PowerMeter powerMeter;
     [SerializeField] Hitbox RHandHitbox;
 
+    private bool isPlayer = false;
+
     void Start()
     {
+        isPlayer = gameObject.tag == "Player" ? true : false;
+
         RHandHitbox.enabled = false;
         RHandHitbox.hitbox.enabled = false;
         RHandHitbox.hitbox.isTrigger = true;
@@ -18,10 +23,9 @@ public class PlayerAttack : MonoBehaviour
     {
         GameObject obj = other.gameObject;
 
-        if (obj.tag == "Enemy" && obj.GetComponent<Health>() != null)
+        if (obj.tag == (isPlayer ? "Enemy" : "Player") && obj.GetComponent<Health>() != null) // don't let gameobject damage itself
         {
-            obj.GetComponent<Health>().OnDamage(30);
-            
+            obj.GetComponent<Health>().OnDamage(damage);
         }
         else if (obj.layer == 7) // obj on ragdoll layer
         {

@@ -162,7 +162,8 @@ namespace StarterAssets
 			{
 				if (c.gameObject != this.gameObject)
 				{
-					if (c.attachedRigidbody != null)
+					//Debug.Log(gameObject.name + " -- " + c.gameObject.name + " has rigidbody: " + c.attachedRigidbody);
+					if (c.gameObject.layer == 7 && c.attachedRigidbody != null) // obj on ragdoll layer w/ own rigidbody
 					{
 						c.isTrigger = true;
 						c.attachedRigidbody.useGravity = false;

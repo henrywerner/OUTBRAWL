@@ -26,7 +26,10 @@ public class Health : MonoBehaviour
 
     void Update()
     {
-        healthBar.value = currentHealth;
+        if (healthBar != null)
+        {
+            healthBar.value = currentHealth;
+        }
 
         // Ensures that the health bar is always facing the camera
         if (healthBarUI != null)
