@@ -458,7 +458,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -840037777384891287, guid: ac0d72775295d49449a43ab58f4f4dff, type: 3}
+  - {fileID: 2100000, guid: 92ff744e491da534d85ec1428cec6693, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1502,6 +1502,66 @@ Transform:
   m_Father: {fileID: 7901017365407435316}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2528937300014930556
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8057606398287742425}
+  - component: {fileID: 7105741773191593899}
+  - component: {fileID: 5611756809846576830}
+  m_Layer: 8
+  m_Name: RFoot Hitbox
+  m_TagString: PlayerAttack
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8057606398287742425
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2528937300014930556}
+  m_LocalRotation: {x: -0, y: -0, z: -2.194478e-14, w: 1}
+  m_LocalPosition: {x: -0.87790656, y: 0, z: 0.6432894}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8816785560037807281}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &7105741773191593899
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2528937300014930556}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.4
+  m_Height: 1.3
+  m_Direction: 1
+  m_Center: {x: 0, y: -0.71, z: 0}
+--- !u!114 &5611756809846576830
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2528937300014930556}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfb8134599f8c494dacecadba77938ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attack: {fileID: 0}
+  hitbox: {fileID: 7105741773191593899}
 --- !u!1 &2585127645023712976
 GameObject:
   m_ObjectHideFlags: 0
@@ -2422,6 +2482,7 @@ MonoBehaviour:
   damage: 30
   powerMeter: {fileID: 0}
   RHandHitbox: {fileID: 3343582728199786346}
+  RFootHitbox: {fileID: 5611756809846576830}
 --- !u!1 &4582945913120863470
 GameObject:
   m_ObjectHideFlags: 0
@@ -3396,7 +3457,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -4565884009001823619, guid: ac0d72775295d49449a43ab58f4f4dff, type: 3}
+  - {fileID: 2100000, guid: 9a044bfee4e07e44691b6703421e2ad4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3855,6 +3916,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4478945691050998807}
+  - {fileID: 8057606398287742425}
   m_Father: {fileID: 5117815843600624171}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

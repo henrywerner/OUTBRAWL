@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Hitbox : MonoBehaviour
 {
-    [SerializeField] PlayerAttack attack;
+    [SerializeField] BrawlAttack attack;
 
     public Collider hitbox;
 

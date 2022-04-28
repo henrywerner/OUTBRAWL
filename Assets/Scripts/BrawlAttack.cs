@@ -2,21 +2,32 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerAttack : MonoBehaviour
+public class BrawlAttack : MonoBehaviour
 {
     [SerializeField] int damage = 30;
     [SerializeField] PowerMeter powerMeter;
     [SerializeField] Hitbox RHandHitbox;
+    [SerializeField] Hitbox RFootHitbox;
 
     private bool isPlayer = false;
+    private List<Hitbox> hitboxes = new List<Hitbox>();
+
+    private void Awake()
+    {
+        hitboxes.Add(RHandHitbox);
+        hitboxes.Add(RFootHitbox);
+    }
 
     void Start()
     {
         isPlayer = gameObject.tag == "Player" ? true : false;
 
-        RHandHitbox.enabled = false;
-        RHandHitbox.hitbox.enabled = false;
-        RHandHitbox.hitbox.isTrigger = true;
+        foreach(Hitbox h in hitboxes)
+        {
+            h.enabled = false;
+            h.hitbox.enabled = false;
+            h.hitbox.isTrigger = true;
+        }
     }
 
     public void OnTriggerEnterExternal(Collider trigger, Collider other)
@@ -33,9 +44,24 @@ public class PlayerAttack : MonoBehaviour
         }
     }
 
-    public void ToggleCrossPunch()
+    public void TogglePunch()
     {
         RHandHitbox.enabled = !RHandHitbox.enabled;
         RHandHitbox.hitbox.enabled = !RHandHitbox.hitbox.enabled;
+    }
+
+    public void ToggleKick()
+    {
+        RFootHitbox.enabled = !RFootHitbox.enabled;
+        RFootHitbox.hitbox.enabled = !RFootHitbox.hitbox.enabled;
+    }
+
+    public void NoAttack()
+    {
+        foreach (Hitbox h in hitboxes)
+        {
+            h.enabled = false;
+            h.hitbox.enabled = false;
+        }
     }
 }
