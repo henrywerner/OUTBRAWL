@@ -18,9 +18,9 @@ public class PlayerAttack : MonoBehaviour
     {
         GameObject obj = other.gameObject;
 
-        if (obj.tag == "Enemy" && obj.GetComponent<EnemyHealth>() != null)
+        if (obj.tag == "Enemy" && obj.GetComponent<Health>() != null)
         {
-            obj.GetComponent<EnemyHealth>().OnDamage(30);
+            obj.GetComponent<Health>().OnDamage(30);
             
         }
         else if (obj.layer == 7) // obj on ragdoll layer

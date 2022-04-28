@@ -1483,10 +1483,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.31
-  m_Height: 0.74
+  m_Radius: 0.4
+  m_Height: 1.02
   m_Direction: 0
-  m_Center: {x: 0.33, y: 0, z: 0}
+  m_Center: {x: 0.39, y: 0, z: 0}
 --- !u!114 &1746324636
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2022,12 +2022,12 @@ GameObject:
   - component: {fileID: 2126063277525460439}
   - component: {fileID: 2126063277525460438}
   - component: {fileID: 5476174559548515501}
-  - component: {fileID: 2438968622794503760}
   - component: {fileID: 2126063277525460437}
   - component: {fileID: 2126063277525460436}
   - component: {fileID: 1615987909}
   - component: {fileID: 1615987910}
   - component: {fileID: 1904893782}
+  - component: {fileID: 801645479}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -2144,20 +2144,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   powerMeter: {fileID: 252892055}
   maxPower: 20
---- !u!114 &2438968622794503760
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1243031537112785650}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ac3130f7ca362242aac457318cb1627, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  healthBar: {fileID: 681736403}
-  maxHealth: 100
 --- !u!114 &2126063277525460437
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2265,6 +2251,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   powerMeter: {fileID: 5476174559548515501}
   RHandHitbox: {fileID: 1746324636}
+--- !u!114 &801645479
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1243031537112785650}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8d337a6df8e2ed4db9f2c6033349817, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthBar: {fileID: 681736403}
+  maxHealth: 100
+  healthBarUI: {fileID: 0}
+  controller: {fileID: 2126063277525460437}
 --- !u!1 &1334274769995350441
 GameObject:
   m_ObjectHideFlags: 0

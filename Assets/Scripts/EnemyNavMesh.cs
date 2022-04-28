@@ -13,7 +13,7 @@ public class EnemyNavMesh : MonoBehaviour
     private void Awake()
     {
         m_Agent = GetComponent<NavMeshAgent>();
-        m_PlayerTransform = FindObjectOfType<PlayerHealth>().transform;
+        m_PlayerTransform = GameObject.FindGameObjectsWithTag("Player")[0].transform; //FindObjectOfType<PlayerHealth>().transform;
     }
 
     private void Update()

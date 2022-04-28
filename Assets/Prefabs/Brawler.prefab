@@ -2260,10 +2260,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8d337a6df8e2ed4db9f2c6033349817, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyHealthBar: {fileID: 171373162803053176}
+  healthBar: {fileID: 171373162803053176}
   maxHealth: 10
-  enemyHealthBarUI: {fileID: 4582945913120863470}
-  enemyController: {fileID: 3916258155351023645}
+  healthBarUI: {fileID: 1496156077767205772}
+  controller: {fileID: 3916258155351023645}
 --- !u!114 &5005016150641480362
 MonoBehaviour:
   m_ObjectHideFlags: 0
