@@ -418,7 +418,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3882396721195664494}
   - component: {fileID: 2722941789250200789}
-  m_Layer: 6
+  m_Layer: 9
   m_Name: Alpha_Joints
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -677,7 +677,7 @@ GameObject:
   - component: {fileID: 778104789018732042}
   - component: {fileID: 5114338452615776054}
   - component: {fileID: 2340764748683275920}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -958,7 +958,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3887665407128772104}
   - component: {fileID: 171373162803053176}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: EnemyHealthBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1976,7 +1976,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3916258156305531001}
-  m_Layer: 6
+  m_Layer: 9
   m_Name: PlayerCameraRoot
   m_TagString: CinemachineTarget
   m_Icon: {fileID: 0}
@@ -2204,7 +2204,8 @@ GameObject:
   - component: {fileID: 5479043791168817532}
   - component: {fileID: 8017316202164772136}
   - component: {fileID: 4766305257688738113}
-  m_Layer: 6
+  - component: {fileID: -1961854150117602517}
+  m_Layer: 9
   m_Name: Brawler
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -2479,10 +2480,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fed80aea81a99bc498b970394bb6d0a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 30
+  punchDamage: 30
+  kickDamage: 30
   powerMeter: {fileID: 0}
   RHandHitbox: {fileID: 3343582728199786346}
   RFootHitbox: {fileID: 5611756809846576830}
+--- !u!114 &-1961854150117602517
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4222179465225299770}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3277cc977191ac449e7c6432232f628, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackCooldownDuration: 1.5
 --- !u!1 &4582945913120863470
 GameObject:
   m_ObjectHideFlags: 0
@@ -2495,7 +2510,7 @@ GameObject:
   - component: {fileID: 5137252856254705282}
   - component: {fileID: 2910898656495915090}
   - component: {fileID: 6038826376114803805}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: EnemyUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3417,7 +3432,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1450226931905904303}
   - component: {fileID: 7392528765487877704}
-  m_Layer: 6
+  m_Layer: 9
   m_Name: Alpha_Surface
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3694,7 +3709,7 @@ GameObject:
   - component: {fileID: 1016649708638549183}
   - component: {fileID: 2430610889696666465}
   - component: {fileID: 4267130378399022573}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3858,7 +3873,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2155566488961430792}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: Fill Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}

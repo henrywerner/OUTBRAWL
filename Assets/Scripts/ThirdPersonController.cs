@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
 using UnityEngine.InputSystem;
 #endif
@@ -101,6 +102,9 @@ namespace StarterAssets
 		private bool _hasAnimator;
 
 		private bool IsCurrentDeviceMouse => _playerInput.currentControlScheme == "KeyboardMouse";
+		
+		// added to prevent errors
+		private bool _isAI = false;
 
 		private void Awake()
 		{
@@ -109,6 +113,9 @@ namespace StarterAssets
 			{
 				_mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
 			}
+
+			if (gameObject.GetComponent<NavMeshAgent>() != null)
+				_isAI = true;
 		}
 
 		private void Start()
@@ -224,7 +231,7 @@ namespace StarterAssets
 		private void Punch()
         {
 			// update animator if using character
-			if (_hasAnimator)
+			if (_hasAnimator && !_isAI)
 			{
 				if (_input.punch)
 				{
@@ -335,7 +342,8 @@ namespace StarterAssets
 			Vector3 targetDirection = Quaternion.Euler(0.0f, _targetRotation, 0.0f) * Vector3.forward;
 
 			// move the player
-			_controller.Move(targetDirection.normalized * (_speed * Time.deltaTime) + new Vector3(0.0f, _verticalVelocity, 0.0f) * Time.deltaTime);
+			if (!_isAI)
+				_controller.Move(targetDirection.normalized * (_speed * Time.deltaTime) + new Vector3(0.0f, _verticalVelocity, 0.0f) * Time.deltaTime);
 
 			// update animator if using character
 			if (_hasAnimator)

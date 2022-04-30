@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using Random = UnityEngine.Random;
 
 public class EnemyNavMesh : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class EnemyNavMesh : MonoBehaviour
     {
         m_Agent = GetComponent<NavMeshAgent>();
         m_PlayerTransform = GameObject.FindGameObjectsWithTag("Player")[0].transform; //FindObjectOfType<PlayerHealth>().transform;
+        m_Agent.avoidancePriority = (int)Random.Range(1f, 50f);
     }
 
     private void Update()

@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class BrawlAttack : MonoBehaviour
 {
-    [SerializeField] int damage = 30;
+    [FormerlySerializedAs("damage")] [SerializeField] int punchDamage = 30;
+    [SerializeField] int kickDamage = 30;
     [SerializeField] PowerMeter powerMeter;
     [SerializeField] Hitbox RHandHitbox;
     [SerializeField] Hitbox RFootHitbox;
@@ -34,9 +36,9 @@ public class BrawlAttack : MonoBehaviour
     {
         GameObject obj = other.gameObject;
 
-        if (obj.tag == (isPlayer ? "Enemy" : "Player") && obj.GetComponent<Health>() != null) // don't let gameobject damage itself
+        if (obj.tag == (isPlayer ? "Enemy" : "Player") && obj.GetComponent<Health>() != null) // don't let gameobject punchDamage itself
         {
-            obj.GetComponent<Health>().OnDamage(damage);
+            obj.GetComponent<Health>().OnDamage(punchDamage);
         }
         else if (obj.layer == 7) // obj on ragdoll layer
         {
