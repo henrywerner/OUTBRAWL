@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 1e176ed9d2a3a564c82215cbc6deee14
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - MADE Soulmaze Outline
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: e434bb4286895344f88fd018aa587159, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
