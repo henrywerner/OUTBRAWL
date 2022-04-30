@@ -5,16 +5,16 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 
-public class GameOver : MonoBehaviour
+public static class GameOver
 {
     // Start is called before the first frame update
-    public void RestartButton()
+    public static void Restart()
     {
         SceneManager.LoadScene("Playground");
     }
 
     // Update is called once per frame
-    public void MainMenuButton()
+    public static void MainMenu()
     {
         SceneManager.LoadScene("MainMenu");
     }

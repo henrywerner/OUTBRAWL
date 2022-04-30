@@ -61,9 +61,15 @@ public class Health : MonoBehaviour
             // yes, this is stupid
             controller.gameObject.GetComponent<NavMeshAgent>().enabled = false;
             controller.gameObject.GetComponent<EnemyNavMesh>().enabled = false;
+
+            yield return new WaitForSeconds(4f);
+            Destroy(gameObject);
         }
-        
-        yield return new WaitForSeconds(4f);
-        Destroy(gameObject);
+        else
+        {
+            controller.inputAllowed = false;
+            yield return new WaitForSeconds(6f);
+            GameOver.Restart();
+        }
     }
 }

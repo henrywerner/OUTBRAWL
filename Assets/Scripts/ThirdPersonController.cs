@@ -65,6 +65,8 @@ namespace StarterAssets
 		[Tooltip("For locking the camera position on all axis")]
 		public bool LockCameraPosition = false;
 
+		public bool inputAllowed = true;
+
 		// cinemachine
 		private float _cinemachineTargetYaw;
 		private float _cinemachineTargetPitch;
@@ -116,15 +118,16 @@ namespace StarterAssets
 
 			if (gameObject.GetComponent<NavMeshAgent>() != null)
 				_isAI = true;
-		}
 
-		private void Start()
-		{
 			_hasAnimator = TryGetComponent(out _animator);
 			_controller = GetComponent<CharacterController>();
 			_input = GetComponent<StarterAssetsInputs>();
 			_playerInput = GetComponent<PlayerInput>();
+			inputAllowed = true;
+		}
 
+		private void Start()
+		{
 			AssignAnimationIDs();
 			SetRagdollParts();
 
@@ -139,10 +142,14 @@ namespace StarterAssets
 			
 			JumpAndGravity();
 			GroundedCheck();
-			Ragdoll();
-			Punch();
-			Kick();
-			Move();
+
+			if(inputAllowed)
+            {
+				Ragdoll();
+				Punch();
+				Kick();
+				Move();
+			}
 		}
 
 		private void LateUpdate()
