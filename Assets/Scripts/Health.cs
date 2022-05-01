@@ -13,6 +13,8 @@ public class Health : MonoBehaviour
     private float currentHealth;
     [SerializeField] GameObject healthBarUI;
     [SerializeField] StarterAssets.ThirdPersonController controller;
+    [SerializeField] float invincibilityDuration = 0.75f;
+    private float invincibilityTimer = 0f; // current amount of invincibility remaining
 
     private bool isAlive = true;
     private bool isPlayer = false;
@@ -36,15 +38,29 @@ public class Health : MonoBehaviour
         {
             healthBarUI.transform.LookAt(Camera.main.transform);
         }
+
+        if (invincibilityTimer > 0)
+        {
+            invincibilityTimer -= Time.deltaTime;
+
+            if(invincibilityTimer <= 0)
+            {
+                invincibilityTimer = 0;
+            }
+        }
     }
 
     public void OnDamage(float damage)
     {
-        currentHealth -= damage;
-        if (currentHealth <= 0 && isAlive)
+        if (invincibilityTimer == 0)
         {
-            currentHealth = 0;
-            StartCoroutine(OnKilled());
+            invincibilityTimer = invincibilityDuration;
+            currentHealth -= damage;
+            if (currentHealth <= 0 && isAlive)
+            {
+                currentHealth = 0;
+                StartCoroutine(OnKilled());
+            }
         }
     }
 
