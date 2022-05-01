@@ -2339,6 +2339,7 @@ MonoBehaviour:
   BottomClamp: -30
   CameraAngleOverride: 0
   LockCameraPosition: 0
+  inputAllowed: 1
   RagdollParts: []
 --- !u!114 &3916258155351023644
 MonoBehaviour:
@@ -2399,6 +2400,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movePosTransform: {fileID: 0}
+  inAttackPause: 0
 --- !u!114 &6823398030438564998
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2498,6 +2500,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackCooldownDuration: 1.5
+  attackDelay: 0.2
+  punchPauseDuration: 1
+  kickPauseDuration: 3
 --- !u!1 &4582945913120863470
 GameObject:
   m_ObjectHideFlags: 0
