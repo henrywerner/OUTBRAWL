@@ -824,6 +824,7 @@ MonoBehaviour:
   BottomClamp: -30
   CameraAngleOverride: 0
   LockCameraPosition: 0
+  inputAllowed: 1
   RagdollParts: []
 --- !u!114 &2126063277525460436
 MonoBehaviour:
@@ -897,10 +898,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8d337a6df8e2ed4db9f2c6033349817, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyHealthBar: {fileID: 928149631}
+  healthBar: {fileID: 0}
   maxHealth: 50
-  enemyHealthBarUI: {fileID: 981841176}
-  enemyController: {fileID: 2126063277525460437}
+  healthBarUI: {fileID: 0}
+  controller: {fileID: 0}
 --- !u!195 &1897243775398134205
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -935,7 +936,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0ee90d288b708247a4327d9c6854883, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  navModRange_quad: 0.05
+  navModRange_under: 0.05
+  navModRange_upper: 0.05
+  navModRange_stairs: 0.05
+  navModRange_platform: 0.05
   movePosTransform: {fileID: 1876859976031893576, guid: b40161e0afd4c484c81b067f015b9c6f, type: 3}
+  inAttackPause: 0
 --- !u!1 &1334274769995350441
 GameObject:
   m_ObjectHideFlags: 0

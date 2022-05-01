@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class WaveLogic : MonoBehaviour
@@ -71,8 +72,9 @@ public class WaveLogic : MonoBehaviour
 
     private void SpawnEnemies(Spawner spawner, int[] enemyQueue)
     {
+        //print("calling with " + enemyQueue.ToList().ToString());
         //// call spawner and queue enemy spawns
-        spawner.SpawnEnemiesFromQueue(new Queue<int>(enemyQueue));
+        spawner.SpawnEnemiesFromQueue(enemyQueue.ToList());
     }
 
     private int[][] GetWaveEnemyQueues(int wave)
