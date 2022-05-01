@@ -825,7 +825,9 @@ MonoBehaviour:
   CameraAngleOverride: 0
   LockCameraPosition: 0
   inputAllowed: 1
+  rotationSpeed: 1
   RagdollParts: []
+  isAttacking: 0
 --- !u!114 &2126063277525460436
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -922,7 +924,7 @@ NavMeshAgent:
   m_AutoRepath: 1
   m_Height: 1.85
   m_BaseOffset: 0
-  m_WalkableMask: 3
+  m_WalkableMask: 2043
   m_ObstacleAvoidanceType: 4
 --- !u!114 &3444514937018139832
 MonoBehaviour:
