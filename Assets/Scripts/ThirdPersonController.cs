@@ -104,6 +104,7 @@ namespace StarterAssets
 
 		private bool _hasAnimator;
 		private bool isPlayer = false;
+		public bool isAttacking = false;
 
 		private bool IsCurrentDeviceMouse => _playerInput.currentControlScheme == "KeyboardMouse";
 		
@@ -305,7 +306,7 @@ namespace StarterAssets
 
 		private void Rotate()
         {
-			if(isPlayer)
+			if(isPlayer && !isAttacking)
             {
 				Vector3 forward = _mainCamera.transform.forward;
 				transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(new Vector3(forward.x, 0, forward.z)), rotationSpeed * Time.deltaTime);

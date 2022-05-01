@@ -13,9 +13,11 @@ public class BrawlAttack : MonoBehaviour
 
     private bool isPlayer = false;
     private List<Hitbox> hitboxes = new List<Hitbox>();
+    private StarterAssets.ThirdPersonController controller;
 
     private void Awake()
     {
+        controller = gameObject.GetComponent<StarterAssets.ThirdPersonController>();
         hitboxes.Add(RHandHitbox);
         hitboxes.Add(RFootHitbox);
     }
@@ -48,12 +50,14 @@ public class BrawlAttack : MonoBehaviour
 
     public void TogglePunch()
     {
+        controller.isAttacking = !controller.isAttacking;
         RHandHitbox.enabled = !RHandHitbox.enabled;
         RHandHitbox.hitbox.enabled = !RHandHitbox.hitbox.enabled;
     }
 
     public void ToggleKick()
     {
+        controller.isAttacking = !controller.isAttacking;
         RFootHitbox.enabled = !RFootHitbox.enabled;
         RFootHitbox.hitbox.enabled = !RFootHitbox.hitbox.enabled;
     }
