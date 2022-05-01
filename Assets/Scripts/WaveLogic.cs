@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class WaveLogic : MonoBehaviour
 {
@@ -31,10 +32,17 @@ public class WaveLogic : MonoBehaviour
 
     public void Update()
     {
-        // if (Input.GetKeyDown(KeyCode.K))
-        // {
-        //     StartNextWave();
-        // }
+        if (Keyboard.current[Key.T].isPressed)
+        {
+            if (Keyboard.current[Key.Digit1].wasPressedThisFrame)
+                SpawnEnemies(_spawners[0], new []{3});
+            else if (Keyboard.current[Key.Digit2].wasPressedThisFrame)
+                SpawnEnemies(_spawners[1], new []{3});
+            else if (Keyboard.current[Key.Digit3].wasPressedThisFrame)
+                SpawnEnemies(_spawners[2], new []{3});
+            else if (Keyboard.current[Key.Digit4].wasPressedThisFrame)
+                SpawnEnemies(_spawners[3], new []{3});
+        }
     }
 
     public void AddAliveEnemy() => EnemiesActive++;

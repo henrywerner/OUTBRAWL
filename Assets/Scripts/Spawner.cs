@@ -7,7 +7,7 @@ using UnityEngine;
 public class Spawner : MonoBehaviour
 {
     [SerializeField] private GameObject _brawler, _ranger, _tank;
-    [SerializeField] private Canvas _spawnerCanvas;
+    [SerializeField] private Canvas _spawnerCanvas, _countdownCanvas;
     [SerializeField] private GameObject _spawnInfo;
     [SerializeField] private TMP_Text _countdown;
 
@@ -23,18 +23,19 @@ public class Spawner : MonoBehaviour
         //_enemyNameplates = new List<GameObject>(32);
         //_enemyQueueGaming.Enqueue(0);
         //_enemyGaming = new List<int>(32);
+        //_countdownCanvas.enabled = false;
+        _spawnerCanvas.enabled = true;
     }
 
     public void SpawnEnemiesFromQueue(List<int> enemyQueue)
     {
+        _countdownCanvas.enabled = true;
+        
         //print(gameObject.name);
         List<int> q = enemyQueue;
 
         foreach (var e in q)
         {
-           //int e = enemyQueue.Dequeue();
-           
-           print(e);
             //_enemyQueueGaming.Enqueue(e);
             _enemyGaming.Add(e);
 
@@ -72,12 +73,13 @@ public class Spawner : MonoBehaviour
     IEnumerator SpawnFromQueue()
     {
         isSpawning = true;
-        _spawnerCanvas.enabled = true;
+        //_countdownCanvas.enabled = true;
         
         float spawnDelay = 5;
         
         while (_enemyGaming.Count != 0)
         {
+            _countdownCanvas.enabled = true;
             float t = 0;
             
             while (t <= spawnDelay)
@@ -120,7 +122,7 @@ public class Spawner : MonoBehaviour
         }
 
         isSpawning = false;
-        _spawnerCanvas.enabled = false;
+        _countdownCanvas.enabled = false;
     }
 
     IEnumerator SpawnEnemy(int type, float spawnDelay)
