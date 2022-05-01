@@ -97,11 +97,13 @@ namespace StarterAssets
 		private CharacterController _controller;
 		private StarterAssetsInputs _input;
 		private GameObject _mainCamera;
+		[SerializeField] float rotationSpeed = 1f;
 		[SerializeField] List<Collider> RagdollParts = new List<Collider>();
 
 		private const float _threshold = 0.01f;
 
 		private bool _hasAnimator;
+		private bool isPlayer = false;
 
 		private bool IsCurrentDeviceMouse => _playerInput.currentControlScheme == "KeyboardMouse";
 		
@@ -110,8 +112,10 @@ namespace StarterAssets
 
 		private void Awake()
 		{
+			isPlayer = gameObject.tag == "Player" ? true : false;
+
 			// get a reference to our main camera
-			if (_mainCamera == null)
+			if (_mainCamera == null && isPlayer)
 			{
 				_mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
 			}
@@ -148,6 +152,7 @@ namespace StarterAssets
 				Ragdoll();
 				Punch();
 				Kick();
+				Rotate();
 				Move();
 			}
 		}
@@ -297,6 +302,15 @@ namespace StarterAssets
 			// Cinemachine will follow this target
 			CinemachineCameraTarget.transform.rotation = Quaternion.Euler(_cinemachineTargetPitch + CameraAngleOverride, _cinemachineTargetYaw, 0.0f);
 		}
+
+		private void Rotate()
+        {
+			if(isPlayer)
+            {
+				Vector3 forward = _mainCamera.transform.forward;
+				transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(new Vector3(forward.x, 0, forward.z)), rotationSpeed * Time.deltaTime);
+			}
+        }
 
 		private void Move()
 		{

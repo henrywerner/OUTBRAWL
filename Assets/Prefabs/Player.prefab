@@ -1551,6 +1551,7 @@ MonoBehaviour:
   CameraAngleOverride: 0
   LockCameraPosition: 0
   inputAllowed: 1
+  rotationSpeed: 5
   RagdollParts: []
 --- !u!114 &2126063277525460436
 MonoBehaviour:
@@ -1624,7 +1625,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fed80aea81a99bc498b970394bb6d0a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 30
+  punchDamage: 30
+  kickDamage: 30
   powerMeter: {fileID: 5476174559548515501}
   RHandHitbox: {fileID: 1746324636}
   RFootHitbox: {fileID: 1762546010}
