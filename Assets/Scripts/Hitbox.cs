@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Hitbox : MonoBehaviour
 {
-    [SerializeField] BrawlAttack attack;
+    [SerializeField] BrawlAttack BAttack;
+    [SerializeField] TankAttack TAttack;
 
     public Collider hitbox;
 
@@ -15,6 +16,13 @@ public class Hitbox : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        attack.OnTriggerEnterExternal(hitbox, other);
+        if (BAttack != null)
+        {
+            BAttack.OnTriggerEnterExternal(hitbox, other);
+        }
+        else if (TAttack != null)
+        {
+            TAttack.OnTriggerEnterExternal(hitbox, other);
+        }
     }
 }

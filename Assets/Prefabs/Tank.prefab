@@ -543,7 +543,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.000000035702058, y: 0.09923464, z: -0.012273348}
+  m_ConnectedAnchor: {x: -0.000000005899736, y: 0.09923464, z: -0.012273349}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: 1}
   m_TwistLimitSpring:
@@ -683,11 +683,12 @@ GameObject:
   - component: {fileID: 2126063277525460427}
   - component: {fileID: 2126063277525460439}
   - component: {fileID: 2126063277525460438}
+  - component: {fileID: 6460485585017618108}
+  - component: {fileID: 1952091928}
   - component: {fileID: 2126063277525460437}
   - component: {fileID: 2126063277525460436}
   - component: {fileID: 1952091927}
   - component: {fileID: 1952091926}
-  - component: {fileID: 1952091928}
   - component: {fileID: 1897243775398134205}
   - component: {fileID: 3444514937018139832}
   m_Layer: 6
@@ -792,6 +793,39 @@ MonoBehaviour:
     m_Bits: 0
   canPush: 0
   strength: 1.1
+--- !u!114 &6460485585017618108
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1243031537112785650}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2d27ab902ebd80479f65be9d2977cde, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  swipeDamage: 30
+  slamDamage: 60
+  LArmHitbox: {fileID: 1248146997658298204}
+  RFootHitbox: {fileID: 6079412266889547599}
+--- !u!114 &1952091928
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1243031537112785650}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8d337a6df8e2ed4db9f2c6033349817, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthBar: {fileID: 928149631}
+  maxHealth: 50
+  healthBarUI: {fileID: 981841176}
+  controller: {fileID: 2126063277525460437}
+  invincibilityDuration: 0.75
 --- !u!114 &2126063277525460437
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -888,22 +922,6 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0}
---- !u!114 &1952091928
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1243031537112785650}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8d337a6df8e2ed4db9f2c6033349817, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  healthBar: {fileID: 0}
-  maxHealth: 50
-  healthBarUI: {fileID: 0}
-  controller: {fileID: 0}
 --- !u!195 &1897243775398134205
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1039,6 +1057,67 @@ Transform:
   m_Father: {fileID: 454718501210795705}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1732684657915782151
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7559044924095218537}
+  - component: {fileID: 5798399689009081631}
+  - component: {fileID: 1248146997658298204}
+  m_Layer: 8
+  m_Name: LArm Hitbox
+  m_TagString: EnemyAttack
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7559044924095218537
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1732684657915782151}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.6249999, y: 0.62499994, z: 0.62499994}
+  m_Children: []
+  m_Father: {fileID: 8887303161935044954}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &5798399689009081631
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1732684657915782151}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.55
+  m_Height: 1.9
+  m_Direction: 0
+  m_Center: {x: -0.54, y: 0, z: 0}
+--- !u!114 &1248146997658298204
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1732684657915782151}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfb8134599f8c494dacecadba77938ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BAttack: {fileID: 0}
+  TAttack: {fileID: 6460485585017618108}
+  hitbox: {fileID: 5798399689009081631}
 --- !u!1 &1746964456747939715
 GameObject:
   m_ObjectHideFlags: 0
@@ -1070,6 +1149,67 @@ Transform:
   m_Father: {fileID: 937668259622197195}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1894890209425204724
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7816097338258816804}
+  - component: {fileID: 6555107448608288208}
+  - component: {fileID: 6079412266889547599}
+  m_Layer: 8
+  m_Name: RFoot Hitbox
+  m_TagString: EnemyAttack
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7816097338258816804
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1894890209425204724}
+  m_LocalRotation: {x: 0.00002615494, y: -0.067928165, z: 0.0000017807702, w: 0.99769026}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.625, y: 0.625, z: 0.625}
+  m_Children: []
+  m_Father: {fileID: 1580897757799430623}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0.003, y: -7.79, z: 0}
+--- !u!136 &6555107448608288208
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1894890209425204724}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 1.32
+  m_Height: 3.25
+  m_Direction: 2
+  m_Center: {x: -0.33, y: 0, z: 0.52}
+--- !u!114 &6079412266889547599
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1894890209425204724}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfb8134599f8c494dacecadba77938ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BAttack: {fileID: 0}
+  TAttack: {fileID: 6460485585017618108}
+  hitbox: {fileID: 6555107448608288208}
 --- !u!1 &2126063277675218354
 GameObject:
   m_ObjectHideFlags: 0
@@ -1207,7 +1347,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 1, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.18760784, y: 0.33850127, z: -0.04944133}
+  m_ConnectedAnchor: {x: 0.18760784, y: 0.33850127, z: -0.049441334}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: 1}
   m_TwistLimitSpring:
@@ -1518,7 +1658,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: 1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.27614456, y: 0.00000026444798, z: 0.00000019890625}
+  m_ConnectedAnchor: {x: -0.27614468, y: 0.00000026444798, z: 0.00000019890625}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 1, z: 0}
   m_TwistLimitSpring:
@@ -1767,6 +1907,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 5169340305326508640}
+  - {fileID: 7559044924095218537}
   m_Father: {fileID: 5610609584891710619}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1812,7 +1953,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 1, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.2740469, y: 0.000000417287, z: 0.000000065192545}
+  m_ConnectedAnchor: {x: -0.27404684, y: 0.00000053649626, z: 0.00000006519254}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 1, z: 0}
   m_TwistLimitSpring:
@@ -2105,7 +2246,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.09124447, y: -0.066563986, z: -0.00055377925}
+  m_ConnectedAnchor: {x: -0.09124451, y: -0.066563986, z: -0.00055377925}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: 1}
   m_TwistLimitSpring:
@@ -2277,7 +2418,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.0024468284, y: -0.40595406, z: -0.005170411}
+  m_ConnectedAnchor: {x: -0.0024468284, y: -0.40595406, z: -0.0051704114}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: 1}
   m_TwistLimitSpring:
@@ -3613,6 +3754,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 3889129816179935499}
+  - {fileID: 7816097338258816804}
   m_Father: {fileID: 5873697230168002937}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3907,7 +4049,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.00000020836397, y: 0.5035996, z: 0.008865325}
+  m_ConnectedAnchor: {x: 0.00000022326513, y: 0.5035996, z: 0.008865325}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: 1}
   m_TwistLimitSpring:
