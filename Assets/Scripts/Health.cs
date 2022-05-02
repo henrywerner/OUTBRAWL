@@ -16,7 +16,7 @@ public class Health : MonoBehaviour
     [SerializeField] float invincibilityDuration = 0.75f;
     private float invincibilityTimer = 0f; // current amount of invincibility remaining
 
-    private bool isAlive = true;
+    public bool isAlive = true;
     private bool isPlayer = false;
 
     void Start()
@@ -66,8 +66,12 @@ public class Health : MonoBehaviour
 
     public IEnumerator OnKilled()
     {
+        
         isAlive = false;
-        controller.ToggleRagdoll();
+        if (controller._animator.enabled) // only ragdoll if not already in ragdoll state
+        {
+            controller.ToggleRagdoll();
+        }
 
         if (!isPlayer)
         {

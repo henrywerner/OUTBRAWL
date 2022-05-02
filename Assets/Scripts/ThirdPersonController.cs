@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using Cinemachine;
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
 using UnityEngine.InputSystem;
 #endif
@@ -64,6 +65,7 @@ namespace StarterAssets
 		public float CameraAngleOverride = 0.0f;
 		[Tooltip("For locking the camera position on all axis")]
 		public bool LockCameraPosition = false;
+		public CinemachineVirtualCamera cameraTargetController;
 
 		public bool inputAllowed = true;
 
@@ -93,12 +95,14 @@ namespace StarterAssets
 		private int _animIDKick;
 
 		private PlayerInput _playerInput;
-		private Animator _animator;
+		public Animator _animator;
 		private CharacterController _controller;
 		private StarterAssetsInputs _input;
 		private GameObject _mainCamera;
+		private Health _health;
 		[SerializeField] float rotationSpeed = 1f;
 		[SerializeField] List<Collider> RagdollParts = new List<Collider>();
+		[SerializeField] GameObject ragdollCameraTarget;
 
 		private const float _threshold = 0.01f;
 
@@ -128,6 +132,7 @@ namespace StarterAssets
 			_controller = GetComponent<CharacterController>();
 			_input = GetComponent<StarterAssetsInputs>();
 			_playerInput = GetComponent<PlayerInput>();
+			_health = GetComponent<Health>();
 			inputAllowed = true;
 		}
 
@@ -148,9 +153,11 @@ namespace StarterAssets
 			JumpAndGravity();
 			GroundedCheck();
 
+			Ragdoll();
+
 			if(inputAllowed)
             {
-				Ragdoll();
+				//Ragdoll();
 				Punch();
 				Kick();
 				Rotate();
@@ -199,6 +206,8 @@ namespace StarterAssets
         {
 			if (_hasAnimator)
 			{
+				RagdollCamera();
+
 				if (_animator.enabled)
 				{
 					// turn on ragdoll
@@ -211,7 +220,7 @@ namespace StarterAssets
 					{
 						c.isTrigger = false;
 						c.attachedRigidbody.useGravity = true;
-						//c.attachedRigidbody.velocity = Vector3.zero;
+						c.attachedRigidbody.velocity = Vector3.zero;
 					}
 				}
 				else
@@ -226,6 +235,21 @@ namespace StarterAssets
 					}
 				}
 			}
+        }
+
+		private void RagdollCamera()
+        {
+			if(ragdollCameraTarget != null)
+            {
+				// switch camera targets
+				GameObject tempTarget = ragdollCameraTarget;
+				ragdollCameraTarget = cameraTargetController.Follow.gameObject;
+
+				tempTarget.transform.rotation = CinemachineCameraTarget.transform.rotation;
+				cameraTargetController.Follow = tempTarget.transform;
+				cameraTargetController.LookAt = tempTarget.transform;
+				CinemachineCameraTarget = tempTarget;
+            }
         }
 
         private void GroundedCheck()
@@ -277,8 +301,9 @@ namespace StarterAssets
 
 		public void Ragdoll()
         {
-			if (_input.ragdoll) // this line will only work for the player, not enemies!!!
+			if (_input.ragdoll && _health.isAlive) // don't allow player to ragdoll once they've died
             {
+				inputAllowed = !inputAllowed;
 				ToggleRagdoll();
 				_input.ragdoll = false;
             }
