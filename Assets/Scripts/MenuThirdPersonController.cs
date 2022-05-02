@@ -15,7 +15,7 @@ namespace StarterAssets
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
 	[RequireComponent(typeof(PlayerInput))]
 #endif
-	public class ThirdPersonController : MonoBehaviour
+	public class MenuThirdPersonController : MonoBehaviour
 	{
 		[Header("Player")]
 		[Tooltip("Move speed of the character in m/s")]
@@ -28,7 +28,8 @@ namespace StarterAssets
 		[Tooltip("Acceleration and deceleration")]
 		public float SpeedChangeRate = 10.0f;
 
-		[Space(10)] [Tooltip("Look Sensitivity")]
+		[Space(10)]
+		[Tooltip("Look Sensitivity")]
 		[Range(0.0f, 5.0f)]
 		public float LookSensitivity = 1;
 
@@ -103,6 +104,7 @@ namespace StarterAssets
 		[SerializeField] float rotationSpeed = 1f;
 		[SerializeField] List<Collider> RagdollParts = new List<Collider>();
 		[SerializeField] GameObject ragdollCameraTarget;
+		[SerializeField] float zOffset = 0.1f;
 
 		private const float _threshold = 0.01f;
 
@@ -111,18 +113,15 @@ namespace StarterAssets
 		public bool isAttacking = false;
 
 		private bool IsCurrentDeviceMouse => _playerInput.currentControlScheme == "KeyboardMouse";
-		
+
 		// added to prevent errors
 		private bool _isAI = false;
 
 		private void Awake()
 		{
-			isPlayer = gameObject.tag == "Player" ? true : false;
+			gameObject.GetComponent<StarterAssetsInputs>().cursorLocked = false;
 
-			if (isPlayer)
-            {
-				gameObject.GetComponent<StarterAssetsInputs>().cursorLocked = true;
-			}
+			isPlayer = gameObject.tag == "Player" ? true : false;
 
 			// get a reference to our main camera
 			if (_mainCamera == null && isPlayer)
@@ -144,7 +143,6 @@ namespace StarterAssets
 		private void Start()
 		{
 			AssignAnimationIDs();
-			SetRagdollParts();
 
 			// reset our timeouts on start
 			_jumpTimeoutDelta = JumpTimeout;
@@ -154,25 +152,28 @@ namespace StarterAssets
 		private void Update()
 		{
 			_hasAnimator = TryGetComponent(out _animator);
-			
+
 			JumpAndGravity();
 			GroundedCheck();
 
-			Ragdoll();
+			Rotate();
+			Punch();
 
-			if(inputAllowed)
-            {
+			/*Ragdoll();
+
+			if (inputAllowed)
+			{
 				//Ragdoll();
 				Punch();
 				Kick();
 				Rotate();
 				Move();
-			}
+			}*/
 		}
 
 		private void LateUpdate()
 		{
-			CameraRotation();
+			//CameraRotation();
 		}
 
 		private void AssignAnimationIDs()
@@ -186,78 +187,7 @@ namespace StarterAssets
 			_animIDKick = Animator.StringToHash("Kick");
 		}
 
-		private void SetRagdollParts()
-        {
-			Collider[] colliders = this.gameObject.GetComponentsInChildren<Collider>();
-
-			foreach (Collider c in colliders)
-			{
-				if (c.gameObject != this.gameObject)
-				{
-					//Debug.Log(gameObject.name + " -- " + c.gameObject.name + " has rigidbody: " + c.attachedRigidbody);
-					if (c.gameObject.layer == 7 && c.attachedRigidbody != null) // obj on ragdoll layer w/ own rigidbody
-					{
-						c.isTrigger = true;
-						c.attachedRigidbody.useGravity = false;
-						c.attachedRigidbody.isKinematic = false;
-						c.attachedRigidbody.collisionDetectionMode = CollisionDetectionMode.Discrete;
-						RagdollParts.Add(c);
-					}
-				}
-			}
-        }
-
-		public void ToggleRagdoll()
-        {
-			if (_hasAnimator)
-			{
-				RagdollCamera();
-
-				if (_animator.enabled)
-				{
-					// turn on ragdoll
-					_animator.enabled = false;
-					//_speed = 0;
-					//_rotationVelocity = 0;
-					//_verticalVelocity = 0;
-
-					foreach (Collider c in RagdollParts)
-					{
-						c.isTrigger = false;
-						c.attachedRigidbody.useGravity = true;
-						c.attachedRigidbody.velocity = Vector3.zero;
-					}
-				}
-				else
-				{
-					// turn off ragdoll
-					_animator.enabled = true;
-
-					foreach (Collider c in RagdollParts)
-					{
-						c.isTrigger = true;
-						c.attachedRigidbody.velocity = Vector3.zero;
-					}
-				}
-			}
-        }
-
-		private void RagdollCamera()
-        {
-			if(ragdollCameraTarget != null)
-            {
-				// switch camera targets
-				GameObject tempTarget = ragdollCameraTarget;
-				ragdollCameraTarget = cameraTargetController.Follow.gameObject;
-
-				tempTarget.transform.rotation = CinemachineCameraTarget.transform.rotation;
-				cameraTargetController.Follow = tempTarget.transform;
-				cameraTargetController.LookAt = tempTarget.transform;
-				CinemachineCameraTarget = tempTarget;
-            }
-        }
-
-        private void GroundedCheck()
+		private void GroundedCheck()
 		{
 			// set sphere position, with offset
 			Vector3 spherePosition = new Vector3(transform.position.x, transform.position.y - GroundedOffset, transform.position.z);
@@ -271,7 +201,7 @@ namespace StarterAssets
 		}
 
 		private void Punch()
-        {
+		{
 			// update animator if using character
 			if (_hasAnimator && !_isAI)
 			{
@@ -287,61 +217,16 @@ namespace StarterAssets
 			}
 		}
 
-		private void Kick()
-        {
-			// update animator if using character
-			if (_hasAnimator)
-			{
-				if (_input.kick)
-				{
-					_animator.SetBool(_animIDKick, true);
-					_input.kick = false;
-				}
-				else
-                {
-					_animator.SetBool(_animIDKick, false);
-				}
-			}
-		}
-
-		public void Ragdoll()
-        {
-			if (_input.ragdoll && _health.isAlive) // don't allow player to ragdoll once they've died
-            {
-				inputAllowed = !inputAllowed;
-				ToggleRagdoll();
-				_input.ragdoll = false;
-            }
-        }
-
-		private void CameraRotation()
-		{
-			// if there is an input and camera position is not fixed
-			if (_input.look.sqrMagnitude >= _threshold && !LockCameraPosition)
-			{
-				//Don't multiply mouse input by Time.deltaTime;
-				float deltaTimeMultiplier = IsCurrentDeviceMouse ? 1.0f : Time.deltaTime;
-				
-				_cinemachineTargetYaw += _input.look.x * deltaTimeMultiplier * LookSensitivity;
-				_cinemachineTargetPitch += _input.look.y * deltaTimeMultiplier * LookSensitivity;
-			}
-
-			// clamp our rotations so our values are limited 360 degrees
-			_cinemachineTargetYaw = ClampAngle(_cinemachineTargetYaw, float.MinValue, float.MaxValue);
-			_cinemachineTargetPitch = ClampAngle(_cinemachineTargetPitch, BottomClamp, TopClamp);
-
-			// Cinemachine will follow this target
-			CinemachineCameraTarget.transform.rotation = Quaternion.Euler(_cinemachineTargetPitch + CameraAngleOverride, _cinemachineTargetYaw, 0.0f);
-		}
-
 		private void Rotate()
-        {
-			if(isPlayer && !isAttacking)
-            {
-				Vector3 forward = _mainCamera.transform.forward;
-				transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(new Vector3(forward.x, 0, forward.z)), rotationSpeed * Time.deltaTime);
+		{
+			if (isPlayer && !isAttacking)
+			{
+				Vector2 mousePos2D = Mouse.current.position.ReadValue();
+				Vector3 mousePos = _mainCamera.GetComponent<Camera>().ScreenToWorldPoint(new Vector3(mousePos2D.x, mousePos2D.y, zOffset));
+				Vector3 look = new Vector3(mousePos.x, mousePos.y - ragdollCameraTarget.transform.position.y, mousePos.z);
+				transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(look), rotationSpeed * Time.deltaTime);
 			}
-        }
+		}
 
 		private void Move()
 		{
@@ -488,7 +373,7 @@ namespace StarterAssets
 
 			if (Grounded) Gizmos.color = transparentGreen;
 			else Gizmos.color = transparentRed;
-			
+
 			// when selected, draw a gizmo in the position of, and matching radius of, the grounded collider
 			Gizmos.DrawSphere(new Vector3(transform.position.x, transform.position.y - GroundedOffset, transform.position.z), GroundedRadius);
 		}
