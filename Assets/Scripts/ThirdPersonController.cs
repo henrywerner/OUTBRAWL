@@ -119,12 +119,6 @@ namespace StarterAssets
 		{
 			isPlayer = gameObject.tag == "Player" ? true : false;
 
-			if (isPlayer)
-            {
-				gameObject.GetComponent<StarterAssetsInputs>().SetCursorState(true);
-				//gameObject.GetComponent<StarterAssetsInputs>().cursorLocked = true;
-			}
-
 			// get a reference to our main camera
 			if (_mainCamera == null && isPlayer)
 			{
