@@ -2207,6 +2207,7 @@ GameObject:
   - component: {fileID: 8017316202164772136}
   - component: {fileID: 4766305257688738113}
   - component: {fileID: -1961854150117602517}
+  - component: {fileID: 1543454833589353583}
   m_Layer: 9
   m_Name: Brawler
   m_TagString: Enemy
@@ -2518,6 +2519,22 @@ MonoBehaviour:
   attackDelay: 0.2
   punchPauseDuration: 1
   kickPauseDuration: 3
+--- !u!208 &1543454833589353583
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4222179465225299770}
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Shape: 0
+  m_Extents: {x: 0.35, y: 0.9, z: 0.35}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0.929769, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &4582945913120863470
 GameObject:
   m_ObjectHideFlags: 0
