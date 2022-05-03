@@ -1528,8 +1528,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2528937300014930556}
   m_LocalRotation: {x: -0, y: -0, z: -2.194478e-14, w: 1}
-  m_LocalPosition: {x: -0.87790656, y: 0, z: 0.6432894}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -2.1124e-10, y: 0.62169, z: -4.178e-12}
+  m_LocalScale: {x: 0.79, y: 1.1933327, z: 0.79}
   m_Children: []
   m_Father: {fileID: 8816785560037807281}
   m_RootOrder: 1
@@ -2055,8 +2055,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4008987067254042463}
   m_LocalRotation: {x: 0.000025987818, y: -0.000000044703476, z: 1.1540094e-12, w: 1}
-  m_LocalPosition: {x: 0.27614456, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -0.186, y: -0, z: -0}
+  m_LocalScale: {x: 1.067088, y: 0.88, z: 0.88}
   m_Children: []
   m_Father: {fileID: 1570074988220690371}
   m_RootOrder: 1
@@ -2396,6 +2396,7 @@ MonoBehaviour:
   controller: {fileID: 3916258155351023645}
   invincibilityDuration: 0.75
   isAlive: 1
+  _deathScreen: {fileID: 0}
 --- !u!114 &5005016150641480362
 MonoBehaviour:
   m_ObjectHideFlags: 0
