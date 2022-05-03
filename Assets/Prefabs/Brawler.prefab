@@ -2341,9 +2341,12 @@ MonoBehaviour:
   BottomClamp: -30
   CameraAngleOverride: 0
   LockCameraPosition: 0
+  cameraTargetController: {fileID: 0}
   inputAllowed: 1
+  _animator: {fileID: 0}
   rotationSpeed: 1
   RagdollParts: []
+  ragdollCameraTarget: {fileID: 0}
   isAttacking: 0
 --- !u!114 &3916258155351023644
 MonoBehaviour:
@@ -2392,6 +2395,7 @@ MonoBehaviour:
   healthBarUI: {fileID: 1496156077767205772}
   controller: {fileID: 3916258155351023645}
   invincibilityDuration: 0.75
+  isAlive: 1
 --- !u!114 &5005016150641480362
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2492,8 +2496,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fed80aea81a99bc498b970394bb6d0a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  punchDamage: 30
-  kickDamage: 30
+  punchDamage: 10
+  kickDamage: 20
   powerMeter: {fileID: 0}
   RHandHitbox: {fileID: 3343582728199786346}
   RFootHitbox: {fileID: 5611756809846576830}

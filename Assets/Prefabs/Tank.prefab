@@ -690,6 +690,7 @@ GameObject:
   - component: {fileID: 1952091927}
   - component: {fileID: 1952091926}
   - component: {fileID: 1897243775398134205}
+  - component: {fileID: -1219083412894494519}
   - component: {fileID: 3444514937018139832}
   m_Layer: 6
   m_Name: Tank
@@ -806,7 +807,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   swipeDamage: 30
-  slamDamage: 60
+  slamDamage: 70
   LArmHitbox: {fileID: 1248146997658298204}
   RFootHitbox: {fileID: 6079412266889547599}
 --- !u!114 &1952091928
@@ -822,10 +823,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthBar: {fileID: 928149631}
-  maxHealth: 50
+  maxHealth: 90
   healthBarUI: {fileID: 981841176}
   controller: {fileID: 2126063277525460437}
   invincibilityDuration: 0.75
+  isAlive: 1
 --- !u!114 &2126063277525460437
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -858,9 +860,12 @@ MonoBehaviour:
   BottomClamp: -30
   CameraAngleOverride: 0
   LockCameraPosition: 0
+  cameraTargetController: {fileID: 0}
   inputAllowed: 1
+  _animator: {fileID: 0}
   rotationSpeed: 1
   RagdollParts: []
+  ragdollCameraTarget: {fileID: 0}
   isAttacking: 0
 --- !u!114 &2126063277525460436
 MonoBehaviour:
@@ -944,6 +949,22 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 2043
   m_ObstacleAvoidanceType: 4
+--- !u!114 &-1219083412894494519
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1243031537112785650}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b1a159c627fdaf479b98662b97dd3da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackCooldownDuration: 1.5
+  attackDelay: 0.5
+  punchPauseDuration: 1
+  kickPauseDuration: 1.2
 --- !u!114 &3444514937018139832
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -956,11 +977,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0ee90d288b708247a4327d9c6854883, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  navModRange_quad: 0.05
-  navModRange_under: 0.05
-  navModRange_upper: 0.05
-  navModRange_stairs: 0.05
-  navModRange_platform: 0.05
+  navModRange_quad: 0.2
+  navModRange_under: 0.2
+  navModRange_upper: 0.2
+  navModRange_stairs: 0.2
+  navModRange_platform: 0.2
   movePosTransform: {fileID: 1876859976031893576, guid: b40161e0afd4c484c81b067f015b9c6f, type: 3}
   inAttackPause: 0
 --- !u!1 &1334274769995350441

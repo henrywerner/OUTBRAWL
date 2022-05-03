@@ -99,6 +99,6 @@ public class EnemyNavMesh : MonoBehaviour
         msg += " Stairs:" + m_Agent.GetAreaCost(stairsID);
         msg += " Platform:" + m_Agent.GetAreaCost(platformID);
         
-        Debug.Log("" + gameObject.name + " navmesh adjusted:" + msg);
+        //Debug.Log("" + gameObject.name + " navmesh adjusted:" + msg);
     }
 }

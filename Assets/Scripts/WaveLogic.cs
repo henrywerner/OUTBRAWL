@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -10,6 +11,7 @@ public class WaveLogic : MonoBehaviour
     public static WaveLogic Instance { get; private set; }
     
     [SerializeField] private Spawner[] _spawners;
+    [SerializeField] private TMP_Text _roundCounter;
     private int EnemiesActive = 0;
     private int currentWave = 0;
 
@@ -43,6 +45,9 @@ public class WaveLogic : MonoBehaviour
             else if (Keyboard.current[Key.Digit4].wasPressedThisFrame)
                 SpawnEnemies(_spawners[3], new []{3});
         }
+
+        if (Keyboard.current[Key.Digit0].wasPressedThisFrame)
+            currentWave++;
     }
 
     public void AddAliveEnemy() => EnemiesActive++;
@@ -59,6 +64,9 @@ public class WaveLogic : MonoBehaviour
     {
         //// update wave value
         currentWave++;
+        
+        //// update text on hud
+        _roundCounter.text = "Round " + currentWave;
         
         //// despawn all enemy corpses?
         
@@ -125,42 +133,92 @@ public class WaveLogic : MonoBehaviour
                 s4 = s3;
                 break;
             default:
+                /*
                 // default wave logic
-                int totalEnemies = (int) (0.1793 * Math.Pow(wave, 2) + 0.0405 * wave) + 6; 
+                var totalEnemies = 1.05 * Mathf.Pow(wave, 1.1f); 
                     // formula stolen from COD zombies. This is just for testing purposes
-                
+
                 int rangers = (int) (totalEnemies / 0.2); // 20% rangers
                 int tanks = (int) (totalEnemies / 0.1); // 10% tanks
-
-                totalEnemies -= rangers + tanks;
+                
+                totalEnemies -= tanks;
+                */
+                int totalEnemies = (int)(Mathf.Pow(wave, 2));
+                int tanks = wave; 
+                
+                print("total enemies: " + totalEnemies + " | total tanks: " + tanks);
 
                 // oh god, what have I done?
                 List<int> s1l = new List<int>();
                 List<int> s2l = new List<int>();
                 List<int> s3l = new List<int>();
                 List<int> s4l = new List<int>();
+
+                for (int i = 0; i < 4; i++)
+                {
+                    for (int j = 0; j < (totalEnemies / 8); j++)
+                    {
+                        switch (i)
+                        {
+                            case 0:
+                                s1l.Add(1);
+                                break;
+                            case 1:
+                                s2l.Add(1);
+                                break;
+                            case 2:
+                                s3l.Add(1);
+                                break;
+                            case 3:
+                                s4l.Add(1);
+                                break;
+                        }
+                    }
+                }
                 
-                s1l.Add(totalEnemies % 16);
-                s2l.Add(totalEnemies % 16);
-                totalEnemies -= totalEnemies % 16;
+                for (int i = 0; i < 4; i++)
+                {
+                    for (int j = 0; j < (tanks / 4); j++)
+                    {
+                        switch (i)
+                        {
+                            case 0:
+                                s1l.Add(3);
+                                break;
+                            case 1:
+                                s2l.Add(3);
+                                break;
+                            case 2:
+                                s3l.Add(3);
+                                break;
+                            case 3:
+                                s4l.Add(3);
+                                break;
+                        }
+                    }
+                }
                 
-                s1l.Add(totalEnemies/8);
-                s1l.Add(tanks/4);
-                s1l.Add(totalEnemies/8);
-                
-                s2l.Add(totalEnemies/8);
-                s2l.Add(tanks/4);
-                s2l.Add(totalEnemies/8);
-                
-                s3l.Add(rangers/2);
-                s3l.Add(totalEnemies/8);
-                s3l.Add(tanks/4);
-                s3l.Add(totalEnemies/8);
-                
-                s4l.Add(rangers/2);
-                s4l.Add(totalEnemies/8);
-                s4l.Add(tanks/4);
-                s4l.Add(totalEnemies/8);
+                for (int i = 0; i < 4; i++)
+                {
+                    for (int j = 0; j < (totalEnemies / 8); j++)
+                    {
+                        switch (i)
+                        {
+                            case 0:
+                                s1l.Add(1);
+                                break;
+                            case 1:
+                                s2l.Add(1);
+                                break;
+                            case 2:
+                                s3l.Add(1);
+                                break;
+                            case 3:
+                                s4l.Add(1);
+                                break;
+                        }
+                    }
+                }
 
                 s1 = s1l.ToArray();
                 s2 = s2l.ToArray();

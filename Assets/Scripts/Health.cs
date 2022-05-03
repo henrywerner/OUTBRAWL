@@ -19,11 +19,15 @@ public class Health : MonoBehaviour
     public bool isAlive = true;
     private bool isPlayer = false;
 
+    [SerializeField] private Canvas _deathScreen;
+
     void Start()
     {
         currentHealth = maxHealth;
         healthBar.maxValue = maxHealth;
         isPlayer = gameObject.tag == "Player" ? true : false;
+        
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     void Update()
@@ -89,7 +93,9 @@ public class Health : MonoBehaviour
         {
             controller.inputAllowed = false;
             yield return new WaitForSeconds(6f);
-            GameOver.Restart();
+            _deathScreen.gameObject.SetActive(true);
+            Cursor.lockState = CursorLockMode.None;
+            //GameOver.Restart();
         }
     }
 }
