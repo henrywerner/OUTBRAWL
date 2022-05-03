@@ -157,7 +157,7 @@ namespace StarterAssets
 			GroundedCheck();
 
 			Rotate();
-			Punch();
+			//Punch();
 
 			/*Ragdoll();
 
@@ -200,7 +200,7 @@ namespace StarterAssets
 			}
 		}
 
-		private void Punch()
+		public void Punch()
 		{
 			// update animator if using character
 			if (_hasAnimator && !_isAI)

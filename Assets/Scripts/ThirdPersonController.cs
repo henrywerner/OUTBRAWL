@@ -121,7 +121,8 @@ namespace StarterAssets
 
 			if (isPlayer)
             {
-				gameObject.GetComponent<StarterAssetsInputs>().cursorLocked = true;
+				gameObject.GetComponent<StarterAssetsInputs>().SetCursorState(true);
+				//gameObject.GetComponent<StarterAssetsInputs>().cursorLocked = true;
 			}
 
 			// get a reference to our main camera
