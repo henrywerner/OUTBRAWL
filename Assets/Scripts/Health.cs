@@ -27,7 +27,8 @@ public class Health : MonoBehaviour
         healthBar.maxValue = maxHealth;
         isPlayer = gameObject.tag == "Player" ? true : false;
         
-        Cursor.lockState = CursorLockMode.Locked;
+        if (isPlayer)
+            Cursor.lockState = CursorLockMode.Locked;
     }
 
     void Update()
