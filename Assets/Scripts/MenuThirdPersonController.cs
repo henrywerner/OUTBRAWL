@@ -119,7 +119,7 @@ namespace StarterAssets
 
 		private void Awake()
 		{
-			gameObject.GetComponent<StarterAssetsInputs>().cursorLocked = false;
+			Cursor.lockState = CursorLockMode.None;
 
 			isPlayer = gameObject.tag == "Player" ? true : false;
 
